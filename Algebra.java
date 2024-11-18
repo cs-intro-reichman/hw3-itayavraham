@@ -51,8 +51,10 @@ public class Algebra {
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
+		// case of x^0
 		if (n == 0)
 		return 1;
+		// x^n = x * x * x .... * x n times
 		else {
 			int sum = x;
 			for (int i = 1; i < n; i++)
@@ -67,10 +69,10 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int sum = x1;
 		int counter = 0;
-		// We check for the case of both Xs being equal
+		// Check for the case of both Xs being equal
 		if (minus(sum, x2) == 0)
 		return 1;
-		// We check for the case of the numbers being coprimes, aka a reduced fraction where the number don't divide
+		// Check for the case of the numbers being coprimes, aka a reduced fraction where the number don't divide
 		if (minus(sum, x2) < 0)
 		return 0;
 		// Calculations
