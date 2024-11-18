@@ -25,43 +25,89 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1;
+		for(int i = 0; i < x2; i++)
+		sum++;
+		return sum;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1;
+		for(int i = 0; i < x2; i++)
+		sum--;
+		return sum;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-        // Replace the following statement with your code
+		int sum = 0;
+		if (x1 == 0 || x2 == 0)
 		return 0;
+		for(int i = 0; i < x2; i++)
+		sum = plus(sum, x1);
+		return sum;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		if (n == 0)
+		return 1;
+		else {
+			int sum = x;
+			for (int i = 1; i < n; i++)
+			{
+				sum = times(sum, x);
+			}
+			return sum;
+		}
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-        // Replace the following statement with your code
+		int sum = x1;
+		int counter = 0;
+		// We check for the case of both Xs being equal
+		if (minus(sum, x2) == 0)
+		return 1;
+		// We check for the case of the numbers being coprimes, aka a reduced fraction where the number don't divide
+		if (minus(sum, x2) < 0)
 		return 0;
+		// Calculations
+		while (sum != 0) {
+			sum = minus(sum, x2);
+			counter++;
+			// Checking for the next time in case the numbers don't fully divide
+			if (minus(sum, x2) < 0)
+			break;
+		}
+		return counter;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-        // Replace the following statement with your code
-		return 0;
+		int sum = div(x1, x2);
+		sum = times(sum, x2);
+		sum = minus(x1, sum);
+		return sum;
+		// Alt Code: return minus(x1, times(div(x1, x2), x2));
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-        // Replace the following statement with your code
-		return 0;
+		int oddNumbers = 1, counter = 0, sum =x;
+		// Checking for the case of X = 1
+		if (x == 1)
+		return 1;
+		// Calculation Method: OddNumbers Subtraction
+		while (sum != 0)
+		{
+			sum = minus(sum, oddNumbers);
+			counter++;
+			oddNumbers = plus(oddNumbers, 2);
+			if(minus(sum, oddNumbers) < 0)
+			break;
+		}
+		return counter;
 	}	  	  
 }
