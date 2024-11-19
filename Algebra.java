@@ -26,64 +26,88 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		int sum = x1;
-		for(int i = 0; i < x2; i++)
-		sum++;
+		// Case I : X2 is Positive :
+		for (int i = 0; i < x2; i++) {
+			sum++;
+		}
+		// Case 2 : X2 is Negative
+		while (x2 < 0) {
+			sum--;  
+			x2++; // This way X2 will reach zero
+		}
 		return sum;
 	}
+	
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		int sum = x1;
-		for(int i = 0; i < x2; i++)
-		sum--;
+		// Case I : X2 is Positive
+		for (int i = 0; i < x2; i++) {
+			sum--;
+		}
+		// Case II : X2 is Negative
+		while (x2 < 0) {
+			sum++;
+			x2++;
+		}
 		return sum;
 	}
+	
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int sum = 0;
-		if (x1 == 0 || x2 == 0)
-		return 0;
-		for(int i = 0; i < x2; i++)
-		sum = plus(sum, x1);
+		// X2 is Positive :
+		for (int i = 0; i < x2; i++) {
+			sum = plus(sum, x1);
+		}
+		// X2 is Negative :
+		while (x2 < 0) {
+			sum = minus(sum, x1);
+			x2++;
+		}
 		return sum;
 	}
+	
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// case of x^0
 		if (n == 0)
 		return 1;
-		// x^n = x * x * x .... * x n times
-		else {
-			int sum = x;
-			for (int i = 1; i < n; i++)
-			{
-				sum = times(sum, x);
-			}
-			return sum;
+		// x^n = x * x * x .... * x n times.
+		int sum = x;
+		for (int i = 1; i < n; i++) {
+			sum = times(sum, x);
 		}
+		return sum;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		int sum = x1;
-		int counter = 0;
+		int sum = 0;
 		// Check for the case of both Xs being equal
-		if (minus(sum, x2) == 0)
+		if (x1 == x2)
 		return 1;
-		// Check for the case of the numbers being coprimes, aka a reduced fraction where the number don't divide
-		if (minus(sum, x2) < 0)
-		return 0;
-		// Calculations
-		while (sum != 0) {
-			sum = minus(sum, x2);
-			counter++;
-			// Checking for the next time in case the numbers don't fully divide
-			if (minus(sum, x2) < 0)
-			break;
+		if (x2 == 0)
+		return 9999999; // My way of saying ERROR
+
+		// Checking if one of the numbers is negative
+		boolean isNegative = (x1 < 0) != (x2 < 0);
+		if (x1 < 0)
+		x1 = minus(0, x1);
+		if (x2 < 0) 
+		x2 = minus(0, x2);
+
+		while (x1 >= x2) {
+			x1 = minus(x1, x2); 
+			sum++; 
 		}
-		return counter;
+		if (isNegative) {
+			sum = minus(0, sum);
+		}
+		return sum;
 	}
 
 	// Returns x1 % x2
