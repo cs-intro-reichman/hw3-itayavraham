@@ -41,8 +41,12 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
+<<<<<<< HEAD
 		int sum = 0;
 		if (x1 == 0 || x2 == 0)
+=======
+		// Replace the following statement with your code
+>>>>>>> upstream/main
 		return 0;
 		for(int i = 0; i < x2; i++)
 		sum = plus(sum, x1);
@@ -67,6 +71,7 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
+<<<<<<< HEAD
 		int sum = x1;
 		int counter = 0;
 		// Check for the case of both Xs being equal
@@ -74,6 +79,9 @@ public class Algebra {
 		return 1;
 		// Check for the case of the numbers being coprimes, aka a reduced fraction where the number don't divide
 		if (minus(sum, x2) < 0)
+=======
+		// Replace the following statement with your code
+>>>>>>> upstream/main
 		return 0;
 		// Calculations
 		while (sum != 0) {
@@ -88,15 +96,21 @@ public class Algebra {
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
+<<<<<<< HEAD
 		int sum = div(x1, x2);
 		sum = times(sum, x2);
 		sum = minus(x1, sum);
 		return sum;
 		// Alt Code: return minus(x1, times(div(x1, x2), x2));
+=======
+		// Replace the following statement with your code
+		return 0;
+>>>>>>> upstream/main
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+<<<<<<< HEAD
 		int oddNumbers = 1, counter = 0, sum =x;
 		// Checking for the case of X = 1
 		if (x == 1)
@@ -111,5 +125,9 @@ public class Algebra {
 			break;
 		}
 		return counter;
+=======
+		// Replace the following statement with your code
+		return 0;
+>>>>>>> upstream/main
 	}	  	  
 }
