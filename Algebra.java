@@ -25,43 +25,115 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1;
+		// Case I : X2 is Positive :
+		for (int i = 0; i < x2; i++) {
+			sum++;
+		}
+		// Case 2 : X2 is Negative
+		while (x2 < 0) {
+			sum--;  
+			x2++; // This way X2 will reach zero
+		}
+		return sum;
 	}
+	
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1;
+		// Case I : X2 is Positive
+		for (int i = 0; i < x2; i++) {
+			sum--;
+		}
+		// Case II : X2 is Negative
+		while (x2 < 0) {
+			sum++;
+			x2++;
+		}
+		return sum;
 	}
+	
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-        // Replace the following statement with your code
-		return 0;
+		int sum = 0;
+		// X2 is Positive :
+		for (int i = 0; i < x2; i++) {
+			sum = plus(sum, x1);
+		}
+		// X2 is Negative :
+		while (x2 < 0) {
+			sum = minus(sum, x1);
+			x2++;
+		}
+		return sum;
 	}
+	
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		// case of x^0
+		if (n == 0)
+		return 1;
+		// x^n = x * x * x .... * x n times.
+		int sum = x;
+		for (int i = 1; i < n; i++) {
+			sum = times(sum, x);
+		}
+		return sum;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-        // Replace the following statement with your code
-		return 0;
+		int sum = 0;
+		// Check for the case of both Xs being equal
+		if (x1 == x2)
+		return 1;
+		if (x2 == 0)
+		return 9999999; // My way of saying ERROR
+
+		// Checking if one of the numbers is negative
+		boolean isNegative = (x1 < 0) != (x2 < 0);
+		if (x1 < 0)
+		x1 = minus(0, x1);
+		if (x2 < 0) 
+		x2 = minus(0, x2);
+
+		while (x1 >= x2) {
+			x1 = minus(x1, x2); 
+			sum++; 
+		}
+		if (isNegative) {
+			sum = minus(0, sum);
+		}
+		return sum;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-        // Replace the following statement with your code
-		return 0;
+		int sum = div(x1, x2);
+		sum = times(sum, x2);
+		sum = minus(x1, sum);
+		return sum;
+		// Alt Code: return minus(x1, times(div(x1, x2), x2));
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-        // Replace the following statement with your code
-		return 0;
+		int oddNumbers = 1, counter = 0, sum =x;
+		// Checking for the case of X = 1
+		if (x == 1)
+		return 1;
+		// Calculation Method: OddNumbers Subtraction
+		while (sum != 0)
+		{
+			sum = minus(sum, oddNumbers);
+			counter++;
+			oddNumbers = plus(oddNumbers, 2);
+			if(minus(sum, oddNumbers) < 0)
+			break;
+		}
+		return counter;
 	}	  	  
 }
