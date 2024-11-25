@@ -6,6 +6,7 @@ public class Anagram {
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
+		System.out.println(isAnagram("abba","aba")); // true
 
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
@@ -32,17 +33,35 @@ public class Anagram {
 		// Initializing str1 and str2 using PreProcess()
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
+		String newStr1 = "", newStr2 = "";
+		for (int i = 0; i < str1.length(); i++)
+		{
+			if (str1.charAt(i) != ' ')
+			newStr1 += str1.charAt(i);
+		}
+		for (int i = 0; i < str2.length(); i++)
+		{
+			if (str2.charAt(i) != ' ')
+			newStr2 += str2.charAt(i);
+		}
+
+		if (newStr1.length() != newStr2.length())
+		return false;
+
 		// Checking if a character in str1 appears in str2, if yes move on to the next character. Else return false.
-		for (int i = 0; i < str1.length(); i++) {
-			for (int j = 0; j < str2.length(); j++) {
-				if(str1.charAt(i) == str2.charAt(j)) {
-					appearance = true;				
+		for (int i = 0; i < newStr1.length(); i++) {
+			appearance = false;
+			for (int j = 0; j < newStr2.length(); j++) {
+				if(newStr1.charAt(i) == newStr2.charAt(j)) {
+                newStr2 = newStr2.substring(0, j) + "!" + newStr2.substring(j + 1);
+                appearance = true;
+                break;
 				}
 			}
 			if (appearance == false)
 			return false;
-			appearance = false;
 		}
+
 		return true;
 	}
 	   
